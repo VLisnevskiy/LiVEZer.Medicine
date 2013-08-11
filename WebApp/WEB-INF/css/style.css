@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+@import 'jquery/blitzer/jquery-ui-1.10.3.css';
+
+body {
+	font: 62.5% "Trebuchet MS", sans-serif;
+	margin: 50px;
+}
