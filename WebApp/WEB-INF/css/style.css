@@ -1,8 +1,16 @@
-@CHARSET "UTF-8";
-
-@import 'jquery/blitzer/jquery-ui-1.10.3.css';
-
+/************ Main Style File
+***********************************************/
+@charset "UTF-8";
+/************ Import part
+***********************************************/
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:regular,bold&amp;v1);
+@import url('dock.css');
+@import url('jquery/blitzer/jquery-ui-1.10.3.min.css');
+/************ Main part
+***********************************************/
 body {
-	font: 62.5% "Trebuchet MS", sans-serif;
-	margin: 50px;
+    background: #505050;
+    /*font: 62.5% "Trebuchet MS", sans-serif;*/
+    margin: 0;
+    padding: 0;
 }
