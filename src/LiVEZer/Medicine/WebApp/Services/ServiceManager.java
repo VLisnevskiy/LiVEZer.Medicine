@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import LiVEZer.Medicine.WebApp.Services.JSONRespons.ErrorResponse;
 import LiVEZer.Medicine.WebApp.Services.JSONRespons.GenericJSONResponse;
+import LiVEZer.Medicine.WebApp.Services.Methods.GetMenuItems;
 import LiVEZer.Medicine.WebApp.Services.Methods.IServiceMethod;
 import LiVEZer.Medicine.WebApp.Services.Methods.SimpMet;
 
@@ -22,8 +23,7 @@ public final class ServiceManager
 
     private ServiceManager()
     {
-        methodMap = new HashMap<String, Class<?>>();
-        methodMap.put("getItems", SimpMet.class);
+        InitializeMethodsMap();
     }
 
     private final static ServiceManager GetInstance()
@@ -110,5 +110,12 @@ public final class ServiceManager
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json.toString());
+    }
+
+    private void InitializeMethodsMap()
+    {
+        methodMap = new HashMap<String, Class<?>>();
+        methodMap.put("getItems", SimpMet.class);
+        methodMap.put("getMenuItems", GetMenuItems.class);
     }
 }
