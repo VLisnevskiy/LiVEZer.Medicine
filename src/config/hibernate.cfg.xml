@@ -18,6 +18,6 @@
   <property name="hibernate.use_sql_comments">true</property>
   
   <!-- Mapping  -->
-  <mapping resource="mapping/Item.hbm.xml"/>
+  <mapping resource="config/mapping/Item.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

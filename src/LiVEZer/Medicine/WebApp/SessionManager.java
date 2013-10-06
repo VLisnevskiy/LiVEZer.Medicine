@@ -28,7 +28,7 @@ public final class SessionManager
         try
         {
             Configuration config = new Configuration();
-            config.configure();
+            config.configure("config/hibernate.cfg.xml");
             SERVICE_REGISTRY = new ServiceRegistryBuilder().applySettings(config.getProperties())
                     .buildServiceRegistry();
             SESSION_FACTORY = config.buildSessionFactory(SERVICE_REGISTRY);
