@@ -27,7 +27,7 @@ public class GetMenuItems implements IServiceMethod
         item.setAction("loginToSystem()");
         item.setFile("img/log-in.png");
         item.setItemId(GenereteMenuId(1));
-        item.setSelected(true);
+        item.setSelected(false);
         item.setTitle("Log In");
         itemsList.add(item);
 

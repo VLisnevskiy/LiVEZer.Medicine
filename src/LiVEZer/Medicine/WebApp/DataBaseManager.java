@@ -1,5 +1,6 @@
 package LiVEZer.Medicine.WebApp;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
@@ -10,7 +11,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
  * 
  * @author Vyacheslav Lisnevsyi
  */
-public final class SessionManager
+public final class DataBaseManager
 {
     /**
      * Session factory
@@ -52,4 +53,21 @@ public final class SessionManager
         return (SESSION_FACTORY != null) ? SESSION_FACTORY
                 : (SESSION_FACTORY = buildSessionFactory());
     }
+
+    public static boolean CloseSession(Session session)
+    {
+        boolean closed = false;
+        try
+        {
+            session.close();
+            closed = true;
+        }
+        catch (Exception e)
+        {
+            // TODO:
+        }
+
+        return closed;
+    }
+
 }
