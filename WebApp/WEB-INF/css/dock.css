@@ -62,12 +62,12 @@ License:    MIT License (see LICENSE file)
 }
 
 .dock ul:before {
-    left: -31px;
+    left: -26px;
     background: url(images/dock-l.png) no-repeat left bottom;
 }
 
 .dock ul:after {
-    right: -31px;
+    right: -26px;
     background: url(images/dock-r.png) no-repeat right bottom;
 }
 /* @end */
@@ -199,7 +199,8 @@ License:    MIT License (see LICENSE file)
 .dock em span {
     display: inline-block;
     padding: 5px 12px;
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: bold;
     font-style: normal;
     color: #FFF;
     background: #000;
@@ -222,7 +223,7 @@ License:    MIT License (see LICENSE file)
    transitions for a smooth animation. Make sure to adjust the width so it
    matches your images. */
 .dock img {
-    width: 64px;/*86px;*/
+    width: 56px;/*86px;*/
     height: auto;
     border: none;
     -webkit-transition: width .2s, height .2s;
@@ -232,7 +233,7 @@ License:    MIT License (see LICENSE file)
 }
 
 .dock li:hover img, .dock li a:focus img {
-    width: 86px;/*96px;*/
+    width: 64px;/*96px;*/
 }
 
 .dock li:active img {

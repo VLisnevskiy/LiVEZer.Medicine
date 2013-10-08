@@ -5,14 +5,16 @@
 ***********************************************/
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:regular,bold&amp;v1);
 
-@import url('dock.css');
-
 @import url('jquery/blitzer/jquery-ui-1.10.3.min.css');
+@import url('dock.css');
+@import url('loading.css');
+
 /************ Main part
 ***********************************************/
 body {
-    background: #505050;
+    /*background: #505050;
     /*font: 62.5% "Trebuchet MS", sans-serif;*/
+    background: #161616 url('../img/bg.gif') top left repeat;
     margin: 0;
     padding: 0;
     font: normal 14px/1.5 "PT Sans", Helvetica, Arial, sans-serif;

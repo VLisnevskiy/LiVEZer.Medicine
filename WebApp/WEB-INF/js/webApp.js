@@ -4,12 +4,13 @@
 // Globals
 var menuCreator = new MenuCreatoClass();
 var logInProvider = new LogInProvider();
+var loadingVisualization = new LoadingVisualization();
 
 // when Document loaded
 $(document).ready(function() {
     // TO DO:
-    menuCreator.createMainMenu();
-    // logInProvider.createLogInForm();
+    // menuCreator.createMainMenu();
+    logInProvider.createLogInForm();
 
 });
 
@@ -30,22 +31,29 @@ function MenuCreatoClass() {
             dataType : 'json',
             data : {
                 method : "getMenuItems"
+            },
+            success : function(data) {
+                createMainMenu(data);
+            },
+            error : function() {
+                alert("Error, during connection to WebServer!");
+                throw new Error("Error, during connection to WebServer!");
             }
-        }).done(function(data) {
-            if (data.success) {
-                var htmlText = "<ul>";
-                $.each(data.items, function(index, value) {
-                    htmlText += addMenuItem(value);
-                });
-                htmlText += "</ul>";
-                $('.dock').html(htmlText);
-            } else {
-                alert("Error with code:" + data.code + "\r\nMessage: " + data.message);
-            }
-        }).fail(function() {
-            alert("Error, during connection to WebServer!");
         });
     };
+
+    function createMainMenu(data) {
+        if (data.success) {
+            var htmlText = "<ul>";
+            $.each(data.items, function(index, value) {
+                htmlText += addMenuItem(value);
+            });
+            htmlText += "</ul>";
+            $('.dock').html(htmlText);
+        } else {
+            alert("Error with code:" + data.code + "\r\nMessage: " + data.message);
+        }
+    }
 
     function addMenuItem(e) {
         if (e.selected) {
@@ -57,7 +65,25 @@ function MenuCreatoClass() {
                     + "\"><em><span>" + e.title + "</span></em><img src=\"" + e.file + "\" /></a><span></span></li>";
         }
     }
-    ;
+}
+
+function LoadingVisualization() {
+
+    var isMmainLoadingVisible = false;
+
+    this.showMmainLoadin = function() {
+        if (!isMmainLoadingVisible) {
+            $('#main').append("<div class='main-loading'><div id='b'></div><div id='m'></div></div>");
+            isMmainLoadingVisible = true;
+        }
+    };
+
+    this.closeMmainLoadin = function() {
+        if (isMmainLoadingVisible) {
+            $('.main-loading').remove();
+            isMmainLoadingVisible = false;
+        }
+    };
 }
 
 function LogInProvider() {
@@ -65,7 +91,7 @@ function LogInProvider() {
     this.isCreated = false;
 
     this.createLogInForm = function() {
-        if (this.isCreated === false) {
+        if (!this.isCreated) {
             $('#main').append("<div id=\"login-in-box\"></div>");
             generateForm();
             setEventHandler();
@@ -74,7 +100,7 @@ function LogInProvider() {
     };
 
     this.closeLogInForm = function() {
-        if (this.isCreated === true) {
+        if (this.isCreated) {
             $('#login-in-box').remove();
             removeSelection();
             this.isCreated = false;
@@ -96,9 +122,11 @@ function setEventHandler() {
         var val = $('#passw').val();
         if ((val != "") && ($('#login').val() != "")) {
             $('#passw').val($.md5(val));
-            $('#container').html($('#login-in-form').serialize());
+            // $('#container').html($('#login-in-form').serialize());
             $('#passw').val(val);
             logInProvider.closeLogInForm();
+            loadingVisualization.showMmainLoadin();
+            menuCreator.createMainMenu();
         } else {
             $('#login-in-box-title').html("Please enter credentials");
             $("#login-in-box").effect("bounce", {
@@ -113,11 +141,18 @@ function setEventHandler() {
  * Functions
  ******************************************************************************/
 
-/*
- * function require(script) { $.ajax({ url: script, dataType: "script", async:
- * false, // <-- This is the key success: function () { // all good... }, error:
- * function () { throw new Error("Could not load script " + script); } }); }
- */
+function loadingRequiredScript(script) {
+    $.ajax({
+        url : script,
+        dataType : "script",
+        async : false, // <-- This is the key
+        success : function() { // all good...
+        },
+        error : function() {
+            throw new Error("Could not load script " + script);
+        }
+    });
+}
 
 /*
  * item.file item.itemId item.selected item.action item.title
@@ -134,17 +169,22 @@ function removeSelection() {
     $('#indic').removeAttr('id');
 }
 
+function setMainPageTitle(title) {
+    $(document).attr('title', title);
+}
+
 function openUserInformation() {
-    $(document).attr('title', 'LiVEZer - Medical [User]');
-    alert("User menu Opened");
+    setMainPageTitle('LiVEZer - Medical [User]');
+    // alert("User menu Opened");
+    loadingVisualization.closeMmainLoadin();
 }
 function loginToSystem() {
-    $(document).attr('title', 'LiVEZer - Medical :: LogIn');
+    setMainPageTitle('LiVEZer - Medical :: LogIn');
     logInProvider.createLogInForm();
 }
 
 function showSom() {
-    $(document).attr('title', 'LiVEZer - Medical :: User');
+    setMainPageTitle('LiVEZer - Medical :: User');
     $('#container').append(createHtmlTag());
 }
 
