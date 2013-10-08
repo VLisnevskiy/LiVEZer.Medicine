@@ -7,7 +7,7 @@ URL:        http://michaelhue.com/cssdock
 Copyright:  (c)2011 by Michael Hüneburg
 License:    MIT License (see LICENSE file)
 ----------------------------------------------- */
-
+@charset "UTF-8";
 /* @group Animation */
 /* Defines the bounce animation. Note that only the up motion is defined as
    the down motion is created automatically using
@@ -222,7 +222,7 @@ License:    MIT License (see LICENSE file)
    transitions for a smooth animation. Make sure to adjust the width so it
    matches your images. */
 .dock img {
-    width: 86px;
+    width: 64px;/*86px;*/
     height: auto;
     border: none;
     -webkit-transition: width .2s, height .2s;
@@ -232,7 +232,7 @@ License:    MIT License (see LICENSE file)
 }
 
 .dock li:hover img, .dock li a:focus img {
-    width: 96px;
+    width: 86px;/*96px;*/
 }
 
 .dock li:active img {
