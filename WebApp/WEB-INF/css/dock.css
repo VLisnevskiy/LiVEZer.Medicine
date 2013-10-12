@@ -49,6 +49,7 @@ License:    MIT License (see LICENSE file)
     padding: 0 5px;
     margin: 0;
     background: url(images/dock-m.png) repeat-x bottom;
+    background-size: auto 46px;
 }
 
 /* Creates the left and right end caps of the dock. You may not need these
@@ -64,11 +65,13 @@ License:    MIT License (see LICENSE file)
 .dock ul:before {
     left: -26px;
     background: url(images/dock-l.png) no-repeat left bottom;
+    background-size: 26px auto;
 }
 
 .dock ul:after {
     right: -26px;
     background: url(images/dock-r.png) no-repeat right bottom;
+    background-size: 26px auto;
 }
 /* @end */
 

@@ -11,9 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import LiVEZer.Medicine.WebApp.Services.JSONRespons.ErrorResponse;
 import LiVEZer.Medicine.WebApp.Services.JSONRespons.GenericJSONResponse;
-import LiVEZer.Medicine.WebApp.Services.Methods.GetMenuItems;
-import LiVEZer.Medicine.WebApp.Services.Methods.IServiceMethod;
-import LiVEZer.Medicine.WebApp.Services.Methods.SimpMet;
+import LiVEZer.Medicine.WebApp.Services.Methods.*;
 
 public final class ServiceManager
 {
@@ -116,6 +114,7 @@ public final class ServiceManager
     {
         methodMap = new HashMap<String, Class<?>>();
         methodMap.put("getItems", SimpMet.class);
-        methodMap.put("getMenuItems", GetMenuItems.class);
+        methodMap.put("getMainMenu", GetMainMenuMethod.class);
+        methodMap.put("logIn", LogInMethod.class);
     }
 }

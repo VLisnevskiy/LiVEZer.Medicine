@@ -5,7 +5,7 @@ import java.util.List;
 import LiVEZer.Medicine.WebApp.DAO.Models.MenuItem;
 import LiVEZer.Medicine.WebApp.Services.JSONRespons.GenericJSONResponse;
 
-public class MenuItems extends GenericJSONResponse
+public class MainMenu extends GenericJSONResponse
 {
     /**
      * 

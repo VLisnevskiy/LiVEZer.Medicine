@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import LiVEZer.Medicine.WebApp.Globals;
 import LiVEZer.Medicine.WebApp.DAO.Models.MenuItem;
 import LiVEZer.Medicine.WebApp.Services.JSONRespons.GenericJSONResponse;
-import LiVEZer.Medicine.WebApp.Services.JSONRespons.Common.MenuItems;
+import LiVEZer.Medicine.WebApp.Services.JSONRespons.Common.MainMenu;
 
-public class GetMenuItems implements IServiceMethod
+public class GetMainMenuMethod implements IServiceMethod
 {
     private String GenereteMenuId(long id)
     {
@@ -21,7 +21,7 @@ public class GetMenuItems implements IServiceMethod
     @Override
     public GenericJSONResponse doMethod(HttpServletRequest request, HttpServletResponse response)
     {
-        MenuItems items = new MenuItems();
+        MainMenu items = new MainMenu();
         List<MenuItem> itemsList = new ArrayList<MenuItem>();
         MenuItem item = new MenuItem();
         item.setAction("showSom()");
