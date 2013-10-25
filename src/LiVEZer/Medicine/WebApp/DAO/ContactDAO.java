@@ -3,7 +3,7 @@ package LiVEZer.Medicine.WebApp.DAO;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import LiVEZer.Medicine.WebApp.Models.Contact;

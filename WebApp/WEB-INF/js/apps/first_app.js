@@ -6,7 +6,7 @@ Ext.application({
     name : 'LiVEZer.Medicine',
 
     paths : {
-        'LiVEZer.Medicine' : 'js/apps'
+        'LiVEZer.Medicine' : 'js/apps/first_app'
     },
 
     controllers : [ 'Stocks' ],
