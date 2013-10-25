@@ -4,12 +4,11 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.io.StringWriter;
 
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.ANY,
         fieldVisibility = JsonAutoDetect.Visibility.NONE,
@@ -21,7 +20,7 @@ public class GenericJSONResponse implements Serializable
      */
     private static final long serialVersionUID = 1L;
 
-    private static final Logger logger = LoggerFactory.getLogger(GenericJSONResponse.class);
+    private static final Logger logger = Logger.getLogger(GenericJSONResponse.class);
 
     private boolean success;
 

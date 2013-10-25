@@ -2,8 +2,7 @@ package LiVEZer.Medicine.WebApp.Controllers;
 
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +13,7 @@ public class AdminController extends BaseController
 {
     public final static String ControllerFolder = "admin/";
 
-    private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+    private static final Logger logger = Logger.getLogger(AdminController.class);
 
     @Override
     protected final String GetPathName()
