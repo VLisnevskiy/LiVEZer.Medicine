@@ -23,6 +23,7 @@ function loginToSystem() {
 function showSom() {
     setMainPageTitle('LiVEZer - Medical :: User');
     $('#container').append(createHtmlTag());
+    loadScript('js/apps/first_app.js');
 }
 
 function createHtmlTag() {

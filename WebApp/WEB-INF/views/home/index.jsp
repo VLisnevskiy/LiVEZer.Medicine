@@ -12,7 +12,6 @@
 </head>
 <body>
     <div id="main">
-        <div id="container"></div>
         <!-- Begin: CSS Dock Code -->
         <div class="dock"></div>
         <!-- End: CSS Dock Code -->
@@ -21,6 +20,7 @@
     $LAB.script("js/jquery/jquery-1.10.2.min.js").wait()
     .script("js/jquery/jquery-ui-1.10.3.min.js").wait()
     .script("js/jquery/jquery.md5.js").wait()
+    .script("js/ext/ext-all.js").wait()
     .script("js/main.js").wait();
     </script>
 </body>

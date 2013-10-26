@@ -6,6 +6,7 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:regular,bold&amp;v1);
 
 @import url('jquery/blitzer/jquery-ui-1.10.3.min.css');
+@import url('ext/css/ext-all.css');
 @import url('dock.css');
 @import url('loading.css');
 
