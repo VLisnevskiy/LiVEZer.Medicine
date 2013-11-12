@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import LiVEZer.Medicine.WebApp.DataBaseManager;
+import LiVEZer.Medicine.WebApp.DBManager;
 
 /**
  * Class that implement interface ICRUD
@@ -26,7 +26,7 @@ public class CRUD<T, pK extends Serializable>
         Session session = null;
         try
         {
-            session = DataBaseManager.getSessionFactory().openSession();
+            session = DBManager.getSessionFactory().openSession();
             session.beginTransaction();
             session.saveOrUpdate(row);
             session.getTransaction().commit();
@@ -53,7 +53,7 @@ public class CRUD<T, pK extends Serializable>
         Session session = null;
         try
         {
-            session = DataBaseManager.getSessionFactory().openSession();
+            session = DBManager.getSessionFactory().openSession();
             session.beginTransaction();
             session.delete(row);
             session.getTransaction().commit();
@@ -81,7 +81,7 @@ public class CRUD<T, pK extends Serializable>
         Session session = null;
         try
         {
-            session = DataBaseManager.getSessionFactory().openSession();
+            session = DBManager.getSessionFactory().openSession();
             row = (T) session.get(clas, id);
         }
         catch (Throwable e)
@@ -106,7 +106,7 @@ public class CRUD<T, pK extends Serializable>
         Session session = null;
         try
         {
-            session = DataBaseManager.getSessionFactory().openSession();
+            session = DBManager.getSessionFactory().openSession();
             rows = session.createCriteria(clas).list();
         }
         catch (Throwable e)

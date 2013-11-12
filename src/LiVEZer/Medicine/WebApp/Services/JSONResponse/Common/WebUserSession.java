@@ -1,8 +1,8 @@
-package LiVEZer.Medicine.WebApp.Services.JSONRespons.Common;
+package LiVEZer.Medicine.WebApp.Services.JSONResponse.Common;
 
-import LiVEZer.Medicine.WebApp.Services.JSONRespons.GenericJSONResponse;
+import LiVEZer.Medicine.WebApp.Services.JSONResponse.JSONResponse;
 
-public class WebUserSession extends GenericJSONResponse
+public class WebUserSession extends JSONResponse
 {
     /**
      * 

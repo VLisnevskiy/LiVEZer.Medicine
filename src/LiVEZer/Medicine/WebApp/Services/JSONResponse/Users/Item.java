@@ -1,10 +1,10 @@
-package LiVEZer.Medicine.WebApp.Services.JSONRespons.Users;
+package LiVEZer.Medicine.WebApp.Services.JSONResponse.Users;
 
 import java.util.List;
 
-import LiVEZer.Medicine.WebApp.Services.JSONRespons.GenericJSONResponse;
+import LiVEZer.Medicine.WebApp.Services.JSONResponse.JSONResponse;
 
-public class Item extends GenericJSONResponse
+public class Item extends JSONResponse
 {
     /**
      * SerialVersionUID

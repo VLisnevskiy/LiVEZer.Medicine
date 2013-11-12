@@ -1,6 +1,6 @@
-package LiVEZer.Medicine.WebApp.Services.JSONRespons;
+package LiVEZer.Medicine.WebApp.Services.JSONResponse;
 
-public class ErrorResponse extends GenericJSONResponse
+public class Error extends JSONResponse
 {
     /**
      * SerialVersionUID
@@ -15,6 +15,12 @@ public class ErrorResponse extends GenericJSONResponse
         return code;
     }
 
+    /**
+     * @param code
+     *            - Code: 0 - No such method.
+     *            1 - Can't execute method.
+     *            2 - Can't access.
+     **/
     public void setCode(int code)
     {
         this.code = code;

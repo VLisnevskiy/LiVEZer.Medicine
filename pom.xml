@@ -19,7 +19,22 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>3.2.4.RELEASE</version>
+        </dependency><!-- 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>3.1.4.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>3.1.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>3.1.4.RELEASE</version>
+        </dependency> -->
         <!-- Hibernate 4.2.6.Final -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -70,6 +85,12 @@
             <artifactId>json-lib</artifactId>
             <classifier>jdk15</classifier>
             <version>2.4</version>
+        </dependency>
+        <!-- java-object-merger -->
+        <dependency>
+            <groupId>net.sf.brunneng.jom</groupId>
+            <artifactId>java-object-merger</artifactId>
+            <version>0.8.2</version>
         </dependency>
         <!-- Dependencies End -->
     </dependencies>

@@ -16,10 +16,10 @@ Ext.define('LiVEZer.Medicine.view.stock.StockPanel', {
 
     items : [ {
         xtype : 'stockgrid',
-        columnWidth : .70
+        columnWidth : .60
     }, {
         xtype : 'stockform',
-        columnWidth : .30
+        columnWidth : .40
     } ]
 
 });

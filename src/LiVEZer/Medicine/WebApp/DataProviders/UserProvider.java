@@ -3,7 +3,7 @@ package LiVEZer.Medicine.WebApp.DataProviders;
 import java.util.HashMap;
 import java.util.Map;
 
-import LiVEZer.Medicine.WebApp.Services.JSONRespons.Common.WebUserSession;
+import LiVEZer.Medicine.WebApp.Services.JSONResponse.Common.WebUserSession;
 
 
 public class UserProvider

@@ -1,4 +1,4 @@
-package LiVEZer.Medicine.WebApp.Services.JSONRespons;
+package LiVEZer.Medicine.WebApp.Services.JSONResponse;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -13,14 +13,14 @@ import org.codehaus.jackson.map.ObjectMapper;
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.ANY,
         fieldVisibility = JsonAutoDetect.Visibility.NONE,
         setterVisibility = JsonAutoDetect.Visibility.ANY)
-public class GenericJSONResponse implements Serializable
+public class JSONResponse implements Serializable
 {
     /**
      * SerialVersionUID
      */
     private static final long serialVersionUID = 1L;
 
-    private static final Logger logger = Logger.getLogger(GenericJSONResponse.class);
+    private static final Logger logger = Logger.getLogger(JSONResponse.class);
 
     private boolean success;
 

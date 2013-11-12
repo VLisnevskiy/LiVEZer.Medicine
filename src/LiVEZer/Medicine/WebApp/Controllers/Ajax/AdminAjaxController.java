@@ -5,24 +5,23 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import LiVEZer.Medicine.WebApp.Services.JSONRespons.ErrorResponse;
+import LiVEZer.Medicine.WebApp.Services.JSONResponse.Error;
 
 @Controller
-@RequestMapping(value = "/user/**")
-public class UserController
+@RequestMapping(value = "/admin/**")
+public class AdminAjaxController extends BaseAjaxController
 {
-    private static final Logger logger = Logger.getLogger(UserController.class);
+    private static final Logger logger = Logger.getLogger(AdminAjaxController.class);
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/ajax.index")
     @ResponseBody
-    public ErrorResponse Index() throws IOException
+    public Error Index() throws IOException
     {
         logger.info("Invoking \"~/user/\"");
 
-        ErrorResponse response = new ErrorResponse();
+        Error response = new Error();
         response.setSuccess(false);
         response.setCode(1);
         response.setMessage("No permissions");
