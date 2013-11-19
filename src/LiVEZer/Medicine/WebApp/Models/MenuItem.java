@@ -1,9 +1,10 @@
-package LiVEZer.Medicine.WebApp.DAO.Models;
+package LiVEZer.Medicine.WebApp.Models;
 
 public class MenuItem
 {
     private String file;
-    private long id;
+    private String itemId;
+    private boolean selected;
     private String action;
     private String title;
 
@@ -17,14 +18,24 @@ public class MenuItem
         this.file = file;
     }
 
-    public long getId()
+    public String getItemId()
     {
-        return id;
+        return itemId;
     }
 
-    public void setId(long id)
+    public void setItemId(String itemId)
     {
-        this.id = id;
+        this.itemId = itemId;
+    }
+
+    public boolean isSelected()
+    {
+        return selected;
+    }
+
+    public void setSelected(boolean selected)
+    {
+        this.selected = selected;
     }
 
     public String getAction()

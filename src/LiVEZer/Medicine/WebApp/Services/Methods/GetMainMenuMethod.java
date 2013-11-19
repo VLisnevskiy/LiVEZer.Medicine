@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import LiVEZer.Medicine.WebApp.Globals;
-import LiVEZer.Medicine.WebApp.DAO.Models.MenuItem;
+import LiVEZer.Medicine.WebApp.Models.MenuItem;
 import LiVEZer.Medicine.WebApp.Services.JSONResponse.JSONResponse;
 import LiVEZer.Medicine.WebApp.Services.JSONResponse.Common.MainMenu;
 

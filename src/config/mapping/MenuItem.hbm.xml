@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2013 5:53:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="LiVEZer.Medicine.WebApp.DAO.Models.MenuItem" table="MENU_ITEMS">
+        <id name="id" type="long">
+            <column name="MENU_ITEM_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="file" type="java.lang.String">
+            <column name="MENU_ITEM_FILE" />
+        </property>
+        <property name="action" type="java.lang.String">
+            <column name="MENU_ITEM_ACTION" />
+        </property>
+        <property name="title" type="java.lang.String">
+            <column name="MENU_ITEM_TITLE" />
+        </property>
+    </class>
+</hibernate-mapping>

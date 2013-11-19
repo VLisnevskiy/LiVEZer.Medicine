@@ -17,5 +17,6 @@
         <property name="hibernate.connection.password">1111</property>
         <!-- Mapping -->
         <mapping resource="config/mapping/Item.hbm.xml" />
+        <mapping resource="config/mapping/MenuItem.hbm.xml" />
     </session-factory>
 </hibernate-configuration>
