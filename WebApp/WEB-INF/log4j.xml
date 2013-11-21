@@ -1,57 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-
-	<!-- Appenders -->
-	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
-		<param name="Target" value="System.out" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
-		</layout>
-	</appender>
-	
+    <!-- Appenders -->
+    <appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p: %c - %m%n" />
+        </layout>
+    </appender>
     <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
         <param name="File" value="${catalina.base}/logs/LIVZer.Medicine.log" />
         <param name="Append" value="true" />
-        <param name="MaxBackupIndex" value="20"/>
-        <param name="MaxFileSize" value="20MB"/>
-        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <param name="MaxBackupIndex" value="20" />
+        <param name="MaxFileSize" value="20MB" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d - %t %-5p %c{2} - %m%n"/>
+            <param name="ConversionPattern" value="%d - %t %-5p %c{2} - %m%n" />
         </layout>
     </appender>
-    
     <appender name="mainAppender" class="org.apache.log4j.AsyncAppender">
-        <appender-ref ref="consoleAppender"/>
-        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="consoleAppender" />
+        <appender-ref ref="fileAppender" />
     </appender>
-
-	<!-- Application Loggers -->
-	<logger name="LiVEZer.Medicine.WebApp">
-		<level value="info" />
-	</logger>
-	
-	<!-- 3rdparty Loggers -->
-	<logger name="org.springframework.core">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.beans">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.context">
-		<level value="info" />
-	</logger>
-
-	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
-
-	<!-- Root Logger -->
-	<root>
-		<priority value="info" />
-		<appender-ref ref="mainAppender" />
-	</root>
-	
+    <!-- Application Loggers -->
+    <logger name="LiVEZer.Medicine.WebApp">
+        <level value="debug" />
+    </logger>
+    <!-- 3rdparty Loggers -->
+    <logger name="org.springframework.core">
+        <level value="warn" />
+    </logger>
+    <logger name="org.springframework.beans">
+        <level value="warn" />
+    </logger>
+    <logger name="org.springframework.context">
+        <level value="warn" />
+    </logger>
+    <logger name="org.springframework.web">
+        <level value="warn" />
+    </logger>
+    <logger name="org.hibernate">
+        <level value="info" />
+    </logger>
+    <!-- Root Logger -->
+    <root>
+        <priority value="warn" />
+        <appender-ref ref="mainAppender" />
+    </root>
 </log4j:configuration>

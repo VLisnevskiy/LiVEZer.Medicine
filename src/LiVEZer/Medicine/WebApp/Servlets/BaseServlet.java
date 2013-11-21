@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import LiVEZer.Medicine.WebApp.Globals;
 import LiVEZer.Medicine.WebApp.Services.ServiceManager;
 
 /**
@@ -43,8 +44,7 @@ public class BaseServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        // response.getWriter().write("Hello World!");
-        String method = request.getParameter("method");
+        String method = request.getParameter(Globals.Method);
         ServiceManager.doWithoutResponse(method, request, response);
     }
 }

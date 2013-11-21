@@ -1,11 +1,30 @@
 package LiVEZer.Medicine.WebApp.DAO.Models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "AP_USER_SESSIONS")
 public class UserSession
 {
+    @Id
+    @Column(name = "AP_SESSION_ID")
+    @GeneratedValue
     private long id;
+
+    @Column(name = "AP_SESSION_USER_ID")
     private long userId;
+
+    @Column(name = "AP_SESSION_SESS_ID", unique = true)
     private String sessionId;
+
+    @Column(name = "AP_SESSION_STATUS")
     private String status;
+
+    @Column(name = "AP_SESSION_SEC_KEY", unique = true)
     private String securityKey;
 
     public long getId()

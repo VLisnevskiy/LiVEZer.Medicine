@@ -27,7 +27,7 @@ function LogInProvider() {
             $('#passw').val(val);
             performLogIn(params);
         } else {
-            wrangCredentials();
+            wrangCredentials(null);
         }
     };
 
@@ -56,8 +56,10 @@ function LogInProvider() {
         $('#login-in-box').html(element);
     }
 
-    function wrangCredentials() {
-        $('#login-in-box-title').html("Incorrect credentials");
+    function wrangCredentials(message) {
+        if (message == null)
+            message = "Incorrect credentials";
+        $('#login-in-box-title').html(message);
         $("#login-in-box").effect("bounce", {
             times : 3
         }, "slow");
@@ -100,7 +102,7 @@ function LogInProvider() {
             return true;
         } else {
             // TODO:
-            wrangCredentials();
+            wrangCredentials(data.message);
             return false;
         }
     }

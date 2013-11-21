@@ -30,7 +30,7 @@ public class GetMainMenuMethod implements IServiceMethod
         item.setSelected(false);
         item.setTitle("Disk");
         itemsList.add(item);
-        
+
         item = new MenuItem();
         item.setAction("openUserInformation()");
         item.setFile("img/icon-ical.png");
@@ -38,10 +38,15 @@ public class GetMainMenuMethod implements IServiceMethod
         item.setSelected(false);
         item.setTitle("Calendar");
         itemsList.add(item);
-        
+
         items.setSuccess(true);
         items.setItems(itemsList);
         return items;
     }
 
+    @Override
+    public String getMethodName()
+    {
+        return "getMainMenu";
+    }
 }

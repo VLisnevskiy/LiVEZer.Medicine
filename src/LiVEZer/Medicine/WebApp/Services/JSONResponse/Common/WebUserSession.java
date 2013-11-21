@@ -15,8 +15,8 @@ public class WebUserSession extends JSONResponse
     private String userFirstName;
     private String userLastName;
     private String userMiddleName;
-    private long roleId;
-    private String roleName;
+    private String roleId;
+    private String roleDescription;
     private String securityKey;
     private String status;
 
@@ -80,24 +80,24 @@ public class WebUserSession extends JSONResponse
         this.userMiddleName = userMiddleName;
     }
 
-    public long getRoleId()
+    public String getRoleId()
     {
         return roleId;
     }
 
-    public void setRoleId(long roleId)
+    public void setRoleId(String roleId)
     {
         this.roleId = roleId;
     }
 
-    public String getRoleName()
+    public String getRoleDescription()
     {
-        return roleName;
+        return roleDescription;
     }
 
-    public void setRoleName(String roleName)
+    public void setRoleDescription(String roleDescription)
     {
-        this.roleName = roleName;
+        this.roleDescription = roleDescription;
     }
 
     public String getSecurityKey()

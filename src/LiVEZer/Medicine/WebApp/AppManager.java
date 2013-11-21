@@ -6,6 +6,8 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
+import LiVEZer.Medicine.WebApp.Services.ServiceManager;
+
 public final class AppManager
 {
     private static AppManager instance;
@@ -24,12 +26,10 @@ public final class AppManager
 
     private AppManager()
     {
-        configured = false;
     }
 
     private ServletContext context;
-    private boolean configured;
-    private Logger logger = LogManager.getLogger(AppManager.class);
+    private static final Logger logger = LogManager.getLogger(AppManager.class);
 
     public ServletContext getContext()
     {
@@ -40,33 +40,60 @@ public final class AppManager
         return context;
     }
 
+    /**
+     * @param context
+     */
     public void setContext(ServletContext context)
     {
         this.context = context;
     }
 
-    public boolean Configure()
+    /**
+     * Configure Application
+     */
+    public void Configure(boolean async)
     {
-        if (!configured && context != null)
+        configureLog4j();
+        if (async)
+        {
+            Runnable run = new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    configure();
+                }
+            };
+            new Thread(run).start();
+        }
+        else
+        {
+            configure();
+        }
+    }
+
+    private void configure()
+    {
+        synchronized (instance)
         {
             try
             {
-                configured &= configureLog4j();
+                ServiceManager.Initialize();
+                DBManager.RefreshConnection();
+                SessionManager.InitializeSessions();
             }
             catch (Exception e)
             {
-                configured = false;
+                logger.error("Can't Configure Application", e);
             }
         }
-        return configured;
     }
-    
-    private boolean configureLog4j()
+
+    private void configureLog4j()
     {
         String log4jFile = context.getRealPath("/")
                 + context.getInitParameter("log4jConfiguration");
         DOMConfigurator.configure(log4jFile);
         logger.info("Configuration Loaded: " + log4jFile);
-        return true;
     }
 }

@@ -5,7 +5,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import LiVEZer.Medicine.WebApp.Services.JSONResponse.JSONResponse;
 
+/**
+ * @author vlisnevskiy
+ *
+ */
 public interface IServiceMethod
 {
-    public JSONResponse doMethod(HttpServletRequest request, HttpServletResponse response);
+    /**
+     * @param request
+     * @param response
+     * @return
+     */
+    public JSONResponse doMethod(HttpServletRequest request, HttpServletResponse response) throws Exception;
+    
+    /**
+     * @return
+     */
+    public String getMethodName();
 }

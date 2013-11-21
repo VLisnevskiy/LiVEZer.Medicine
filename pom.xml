@@ -62,27 +62,17 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.1</version>
         </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>20041127.091804</version>
+        </dependency>
         <!-- Apache Log4j -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
-        </dependency><!--
-         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.0-beta9</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.0-beta9</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-1.2-api</artifactId>
-            <version>2.0-beta9</version>
-        </dependency>-->
         <!-- Jackson CodeHouse -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
@@ -138,8 +128,4 @@
             </plugin>
         </plugins>
     </build>
-    <properties>
-        <db.User>LOCAL_USER</db.User>
-        <dp.Pass>1111</dp.Pass>
-    </properties>
 </project>

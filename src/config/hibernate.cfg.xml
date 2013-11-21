@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory name="testSession">
+    <session-factory name="LiVEZer.Medicine.Session">
         <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
         <property name="hibernate.connection.url">jdbc:sqlserver://HOT-DEVICE:1189;instanceName=DBLOCALE;databaseName=medicineTest;integratedSecurity=false;</property>
         <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
@@ -16,7 +16,7 @@
         <property name="hibernate.connection.username">LOCAL_USER</property>
         <property name="hibernate.connection.password">1111</property>
         <!-- Mapping -->
-        <mapping resource="config/mapping/Item.hbm.xml" />
-        <mapping resource="config/mapping/MenuItem.hbm.xml" />
+        <!-- <mapping resource="config/mapping/Item.hbm.xml" />
+        <mapping resource="config/mapping/MenuItem.hbm.xml" />-->
     </session-factory>
 </hibernate-configuration>

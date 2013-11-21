@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AssignableTypeFilter;
 
 import LiVEZer.Medicine.WebApp.Services.JSONResponse.Error;
 import LiVEZer.Medicine.WebApp.Services.JSONResponse.JSONResponse;
@@ -36,7 +39,13 @@ public final class ServiceManager
                 instance = new ServiceManager();
             }
         }
+
         return instance;
+    }
+
+    public static void Initialize()
+    {
+        GetInstance();
     }
 
     /**
@@ -56,6 +65,8 @@ public final class ServiceManager
     public static JSONResponse doWithResponse(String method, HttpServletRequest request,
             HttpServletResponse response)
     {
+        logger.info(String.format("Begin execute method {\"%s\"}", method));
+
         JSONResponse jsonResponse;
         if (StringUtils.isNotBlank(method) && GetInstance().methodMap.containsKey(method))
         {
@@ -85,6 +96,7 @@ public final class ServiceManager
             jsonResponse = error;
         }
 
+        logger.debug("Response: " + jsonResponse.toString());
         return jsonResponse;
     }
 
@@ -117,9 +129,27 @@ public final class ServiceManager
 
     private void InitializeMethodsMap()
     {
+        logger.info("ServiceManager.InitializeMethodsMap()");
+
         methodMap = new HashMap<String, Class<?>>();
-        methodMap.put("getItems", SimpMet.class);
-        methodMap.put("getMainMenu", GetMainMenuMethod.class);
-        methodMap.put("logIn", LogInMethod.class);
+        String packageName = "LiVEZer.Medicine.WebApp.Services.Methods";
+        ClassPathScanningCandidateComponentProvider scanner =
+                new ClassPathScanningCandidateComponentProvider(false);
+        scanner.addIncludeFilter(new AssignableTypeFilter(IServiceMethod.class));
+        for (BeanDefinition bd : scanner.findCandidateComponents(packageName))
+        {
+            String name = bd.getBeanClassName();
+            try
+            {
+                IServiceMethod method = (IServiceMethod) Class.forName(name).newInstance();
+                methodMap.put(method.getMethodName(), method.getClass());
+
+                logger.debug(String.format("Method {\"%s\"} added", method.getMethodName()));
+            }
+            catch (Exception e)
+            {
+                logger.error("Can't add: " + name, e);
+            }
+        }
     }
 }
