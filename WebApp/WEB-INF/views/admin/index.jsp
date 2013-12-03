@@ -10,8 +10,13 @@
 <link type="text/css" rel="stylesheet" href="css/ext/css/ext-all.css"/>
 <!-- Link JavaScript files-->
 <script type="text/javascript" src="js/LAB.min.js"></script>
+
+<script type="text/javascript" src="js/ext/ext-all-debug.js"></script>
+<script type="text/javascript" src="js/apps/UsersApp.js"></script>
+<!--
 <script type="text/javascript" src="js/ext/ext-all.js"></script>
-<script type="text/javascript" src="js/apps/first_app.js"></script>
+<script type="text/javascript" src="js/apps/first_app.js"></script>-->
+<!-- 
 <script type="text/javascript">
 Ext.onReady(function(){
 
@@ -154,13 +159,15 @@ Ext.onReady(function(){
     grid.render('crud-grid');
 });
 </script>
+-->
 </head>
 <body>
+    <!-- 
     <div id="main">
         <div id="crud-grid"></div>
-        <!-- Begin: CSS Dock Code -->
+        <!-- Begin: CSS Dock Code - ->
         <div class="dock"></div>
-        <!-- End: CSS Dock Code -->
+        <!-- End: CSS Dock Code - ->
     </div>
     <script type="text/javascript">
     /*$LAB.script("js/jquery/jquery-1.10.2.min.js").wait()
@@ -168,5 +175,6 @@ Ext.onReady(function(){
     .script("js/jquery/jquery.md5.js").wait();*/
     //.script("js/main.js").wait();
     </script>
+    -->
 </body>
 </html>

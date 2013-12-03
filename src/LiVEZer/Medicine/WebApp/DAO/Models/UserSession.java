@@ -1,9 +1,13 @@
 package LiVEZer.Medicine.WebApp.DAO.Models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +30,10 @@ public class UserSession
 
     @Column(name = "AP_SESSION_SEC_KEY", unique = true)
     private String securityKey;
+
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, targetEntity = User.class)
+    @JoinColumn(name = "AP_SESSION_USER_ID", insertable = false, updatable = false)
+    private User user;
 
     public long getId()
     {
@@ -75,5 +83,15 @@ public class UserSession
     public void setSecurityKey(String securityKey)
     {
         this.securityKey = securityKey;
+    }
+
+    public User getUser()
+    {
+        return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
     }
 }
