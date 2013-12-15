@@ -12,7 +12,8 @@ function MenuCreatoClass() {
             dataType : 'json',
             async : false,
             data : {
-                method : "getMainMenu"
+                method : "getMainMenu",
+                data : JSON.stringify(userSession)
             },
             success : function(data) {
                 buildMainMenu(data);

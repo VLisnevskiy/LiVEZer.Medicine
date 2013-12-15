@@ -1,8 +1,5 @@
 package LiVEZer.Medicine.WebApp.Services.Methods;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import LiVEZer.Medicine.WebApp.DataProviders.UserProvider;
 import LiVEZer.Medicine.WebApp.Services.JSONResponse.JSONResponse;
 import LiVEZer.Medicine.WebApp.Services.JSONResponse.Error;
@@ -10,10 +7,10 @@ import LiVEZer.Medicine.WebApp.Services.JSONResponse.Error;
 public class LogInMethod implements IServiceMethod
 {
     @Override
-    public JSONResponse doMethod(HttpServletRequest request, HttpServletResponse response)
+    public JSONResponse Do(String data)
             throws Exception
     {
-        JSONResponse res = (new UserProvider()).LogIn(request, response);
+        JSONResponse res = (new UserProvider()).LogIn(data);
         if (res == null)
         {
             res = new Error();

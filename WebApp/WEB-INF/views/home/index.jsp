@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Test</title>
+<title>LiVEZer - Medicine :: Авторизація</title>
 <link type="image/ico" rel="icon" href="favicon.ico" />
 <!-- Link CSS files -->
 <link type="text/css" rel="stylesheet" href="css/style.css" />
@@ -19,9 +19,9 @@
     <script type="text/javascript">
     $LAB.script("js/jquery/jquery-1.10.2.min.js").wait()
     .script("js/jquery/jquery-ui-1.10.3.min.js").wait()
-    .script("js/jquery/jquery.md5.js").wait()
+    .script("js/jquery/jquery.md5.js").wait().script("js/func/MenuCreatoClass.js")
     .script("js/ext/ext-all.js").wait()
-    .script("js/main.js").wait();
+    .script("js/main.js").wait().script("js/func/LogInProvider.js");
     </script>
 </body>
 </html>

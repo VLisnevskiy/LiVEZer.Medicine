@@ -1,8 +1,5 @@
 package LiVEZer.Medicine.WebApp.Services.Methods;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.hibernate.Session;
 
 import LiVEZer.Medicine.WebApp.DBManager;
@@ -15,7 +12,7 @@ public class SimpMet implements IServiceMethod
 {
 
     @Override
-    public JSONResponse doMethod(HttpServletRequest request, HttpServletResponse response)
+    public JSONResponse Do(String data)
     {
         Item item = new Item();
         item.setSuccess(true);

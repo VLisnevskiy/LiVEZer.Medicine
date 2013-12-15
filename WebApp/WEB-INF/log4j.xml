@@ -23,9 +23,9 @@
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </appender>
-    <!-- Application Loggers -->
+    <!-- Application Loggers (debug, warn, info) -->
     <logger name="LiVEZer.Medicine.WebApp">
-        <level value="debug" />
+        <level value="info" />
     </logger>
     <!-- 3rdparty Loggers -->
     <logger name="org.springframework.core">
@@ -41,7 +41,8 @@
         <level value="warn" />
     </logger>
     <logger name="org.hibernate">
-        <level value="info" />
+        <!-- <level value="info" /> -->
+        <level value="warn" />
     </logger>
     <!-- Root Logger -->
     <root>

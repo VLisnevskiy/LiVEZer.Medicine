@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import LiVEZer.Medicine.WebApp.DAO.CRUD;
+import LiVEZer.Medicine.WebApp.DAO.ICRUD;
+//import LiVEZer.Medicine.WebApp.DAO.Models.User;
 import LiVEZer.Medicine.WebApp.Services.JSONResponse.*;
 import LiVEZer.Medicine.WebApp.Services.JSONResponse.Error;
 import LiVEZer.Medicine.WebApp.Services.JSONResponse.Users.*;
 
 @Controller
 @RequestMapping(value = "/admin/**")
-public class AdminAjaxController extends BaseAjaxController
+public class AdminAjaxController
 {
     private static final Logger logger = Logger.getLogger(AdminAjaxController.class);
 
@@ -27,11 +30,12 @@ public class AdminAjaxController extends BaseAjaxController
     public AdminAjaxController()
     {
         users = new ArrayList<User>();
-        User user = new User();
-        user.setId(++id);
-        user.setName("Initial User");
-        user.setEmail("mail@ma.ua");
-        users.add(user);
+        /*
+         * User user = new User(); user.setId(++id);
+         * user.setName("Лісневський Вячслав"); user.setRole("Адміністратор");
+         * user.setEmail("admin@main.ua"); users.add(user);
+         */
+
     }
 
     @RequestMapping(value = "/ajax.index")
@@ -60,7 +64,7 @@ public class AdminAjaxController extends BaseAjaxController
                 response = new Collection();
                 user.setId(++id);
                 users.add(user);
-                ((Collection)response).setData(user);
+                ((Collection) response).setData(user);
                 response.setSuccess(true);
             }
         }
@@ -68,10 +72,10 @@ public class AdminAjaxController extends BaseAjaxController
         {
             e.printStackTrace();
             response = new Error();
-            ((Error)response).setCode(4);
-            ((Error)response).setMessage("Can't create new User");
+            ((Error) response).setCode(4);
+            ((Error) response).setMessage("Can't create new User");
         }
-        
+
         return response;
     }
 
@@ -79,12 +83,42 @@ public class AdminAjaxController extends BaseAjaxController
     @ResponseBody
     public JSONResponse ReadUsers(@RequestParam int page, @RequestParam int size)
     {
-        logger.info("Invoking \"~/user/ajax.user.read\"");
+        logger.info("Invoking \"~/user/ajax.user.read\" (page = " + page + " size = " + size + ")");
+
+        List<User> usr = new ArrayList<User>();
+        /*
+         * for (int i = page; i < page + size && i < users.size(); i++) {
+         * usr.add(users.get(i)); }
+         */
+        ICRUD<LiVEZer.Medicine.WebApp.DAO.Models.User, Long> userDAO = new CRUD<LiVEZer.Medicine.WebApp.DAO.Models.User, Long>(
+                LiVEZer.Medicine.WebApp.DAO.Models.User.class);
+
+        try
+        {
+            List<LiVEZer.Medicine.WebApp.DAO.Models.User> users = userDAO.Read();
+            for (int i = page; i < page + size && i < users.size(); i++)
+            {
+                User user = new User();
+                user.setActive(users.get(i).isActive());
+                user.setEmail(users.get(i).getWorkEmail());
+                user.setId((int) users.get(i).getId());
+                user.setName(users.get(i).getPerson().getFirstName() + " "
+                        + users.get(i).getPerson().getLastName());
+                user.setRole(users.get(i).getRole().getRoleId());
+                usr.add(user);
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
 
         Collection response = new Collection();
-        response.setData(users);
+        response.setData(usr);
         response.setTotal(users.size());
         response.setSuccess(true);
+
+        logger.info(response);
         return response;
     }
 
@@ -110,7 +144,7 @@ public class AdminAjaxController extends BaseAjaxController
         Collection coll = new Collection();
         coll.setData(user);
         logger.info(coll);
-        
+
         Error response = new Error();
         response.setSuccess(false);
         response.setCode(1);

@@ -5,6 +5,8 @@ public final class Globals
     public static final String MenuId = "menuItem";
 
     public static final String Method = "method";
+    
+    public static final String Data = "data";
 
     public final class Session
     {

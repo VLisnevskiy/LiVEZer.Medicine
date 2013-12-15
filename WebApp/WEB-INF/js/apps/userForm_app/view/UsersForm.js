@@ -16,20 +16,26 @@
 Ext.define('LiVEzerMedecine.view.UsersForm', {
     extend: 'Ext.window.Window',
 
+    requires: [
+        'Ext.selection.RowModel'
+    ],
+
     autoShow: true,
-    height: 395,
-    width: 480,
-    title: 'User List',
+    height: 399,
+    width: 481,
+    layout: {
+        type: 'fit'
+    },
+    title: 'Users',
     maximizable: true,
 
     initComponent: function() {
         var me = this;
 
         Ext.applyIf(me, {
-            dockedItems: [
+            items: [
                 {
                     xtype: 'gridpanel',
-                    dock: 'top',
                     height: 311,
                     width: 674,
                     autoScroll: true,
@@ -65,7 +71,9 @@ Ext.define('LiVEzerMedecine.view.UsersForm', {
                             text: 'Email'
                         }
                     ]
-                },
+                }
+            ],
+            dockedItems: [
                 {
                     xtype: 'pagingtoolbar',
                     dock: 'bottom',

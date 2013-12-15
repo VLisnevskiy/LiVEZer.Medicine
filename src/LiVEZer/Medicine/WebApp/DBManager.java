@@ -119,7 +119,7 @@ public final class DBManager
      * Method for Refresh Hibernate Connection
      * 
      **/
-    public static void RefreshConnection()
+    public static void RefreshSessionFactory()
     {
         logger.info("DBManager.RefreshConnection() - Begin Invoke");
 

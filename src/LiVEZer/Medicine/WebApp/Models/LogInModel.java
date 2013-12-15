@@ -1,11 +1,13 @@
 package LiVEZer.Medicine.WebApp.Models;
 
+import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import LiVEZer.Medicine.WebApp.DBTools;
 import LiVEZer.Medicine.WebApp.Globals.Tables.AP_USERS;
 
+@JsonAutoDetect
 public class LogInModel
 {
     private String login;

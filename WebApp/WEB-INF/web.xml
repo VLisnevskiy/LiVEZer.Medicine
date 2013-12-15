@@ -14,11 +14,11 @@
         <param-value>/WEB-INF/log4j.xml</param-value>
     </context-param>
     <!-- Creates the Spring Container shared by all Servlets and Filters -->
-    <!-- <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener> -->
     <listener>
-        <listener-class>LiVEZer.Medicine.WebApp.AppContextListener</listener-class>
+        <listener-class>LiVEZer.Medicine.WebApp.AppMainListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <!-- Processes application requests -->
     <servlet>

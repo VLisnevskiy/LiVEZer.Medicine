@@ -79,7 +79,7 @@ public final class AppManager
             try
             {
                 ServiceManager.Initialize();
-                DBManager.RefreshConnection();
+                DBManager.RefreshSessionFactory();
                 SessionManager.InitializeSessions();
             }
             catch (Exception e)

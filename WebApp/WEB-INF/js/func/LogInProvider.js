@@ -23,7 +23,7 @@ function LogInProvider() {
         var val = $('#passw').val();
         if ((val != "") && ($('#login').val() != "")) {
             $('#passw').val($.md5(val));
-            var params = $('#login-in-form').serialize();
+            var params = $('#login-in-form').serializeToObject();
             $('#passw').val(val);
             performLogIn(params);
         } else {
@@ -47,12 +47,24 @@ function LogInProvider() {
             isCreated = false;
         }
     }
+    
+    function hideLogInForm() {
+        if (isCreated) {
+            $('#login-in-box').hide();
+        }
+    }
+    
+    function showLogInForm() {
+        if (isCreated) {
+            $('#login-in-box').show();
+        }
+    }
 
     function generateForm() {
-        var element = "<div id=\"login-in-box-title\">LogIn</div><form id=\"login-in-form\" autocomplete=\"off\">"
-                + "<input type=\"text\" name=\"login\" id=\"login\" placeholder=\"Username\" />"
-                + "<input type=\"password\" name=\"passw\" id=\"passw\" placeholder=\"Password\" />"
-                + "<input type=\"submit\" value=\"LOG IN\" /></form>";
+        var element = "<div id=\"login-in-box-title\">Авторизація</div><form id=\"login-in-form\" autocomplete=\"off\">"
+                + "<input type=\"text\" name=\"login\" id=\"login\" placeholder=\"Ім'я користувача\" />"
+                + "<input type=\"password\" name=\"passw\" id=\"passw\" placeholder=\"Пароль\" />"
+                + "<input type=\"submit\" value=\"Увійти\" /></form>";
         $('#login-in-box').html(element);
     }
 
@@ -67,38 +79,48 @@ function LogInProvider() {
 
     function performLogIn(params) {
         var bOk = true;
-        params = "method=logIn&" + params;
+        params = { method: 'logIn', data : params};
         $.ajax({
             url : 'do',
             type : 'POST',
             dataType : 'json',
-            async : false,
+            async : true,
             data : params,
             success : function(data) {
                 bOk = checkSession(data);
+                if (bOk) {
+                    // TODO: If LogIn success
+                    closeLogInForm();
+                    setMainPageTitle('LiVEZer - Medical :: Welcome ' + userSession.userName);
+                    loadingVisualization.showMmainLoading();
+                    bOk = menuCreator.createMainMenu();
+                    if (!bOk) {
+                        // TODO: Warning
+                    } else {
+                        // confirmBeforeExit = true;
+                    }
+                    loadingVisualization.closeMmainLoading();
+                }
+                    
+                loadingVisualization.closeMmainLoading();
+                closeLogInForm();
             },
             error : function() {
                 bOk = false;
+                showLogInForm();
+                loadingVisualization.closeMmainLoading();
+                wrangCredentials("Error: Try again");
                 throw new Error("Error, during connection to WebServer!");
             }
         });
-        if (bOk) {
-            // TODO: If LogIn success
-            closeLogInForm();
-            loadingVisualization.showMmainLoading();
-            bOk = menuCreator.createMainMenu();
-            if (!bOk) {
-                // TODO: Warning
-            } else {
-                // confirmBeforeExit = true;
-            }
-            loadingVisualization.closeMmainLoading();
-        }
+        
+        hideLogInForm();
+        loadingVisualization.showMmainLoading();
     }
 
     function checkSession(data) {
         if (data.success) {
-            // TODO:
+            userSession = data;
             return true;
         } else {
             // TODO:

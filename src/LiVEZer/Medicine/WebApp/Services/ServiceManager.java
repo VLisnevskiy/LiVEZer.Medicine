@@ -1,11 +1,7 @@
 package LiVEZer.Medicine.WebApp.Services;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -62,10 +58,9 @@ public final class ServiceManager
      * 
      * @return Return Service JSON Response.
      **/
-    public static JSONResponse doWithResponse(String method, HttpServletRequest request,
-            HttpServletResponse response)
+    public static JSONResponse Do(String method, String data)
     {
-        logger.info(String.format("Begin execute method {\"%s\"}", method));
+        logger.info(String.format("Begin execute method {\"%s\"} data = {\"%s\"}", method, data));
 
         JSONResponse jsonResponse;
         if (StringUtils.isNotBlank(method) && GetInstance().methodMap.containsKey(method))
@@ -74,7 +69,7 @@ public final class ServiceManager
             {
                 IServiceMethod imetod = (IServiceMethod) GetInstance().methodMap.get(method)
                         .newInstance();
-                jsonResponse = imetod.doMethod(request, response);
+                jsonResponse = imetod.Do(data);
             }
             catch (Exception ex)
             {
@@ -98,33 +93,6 @@ public final class ServiceManager
 
         logger.debug("Response: " + jsonResponse.toString());
         return jsonResponse;
-    }
-
-    /**
-     * Execute Service Method.
-     * 
-     * @param method
-     *            - Name of Service method.
-     * 
-     * @param request
-     *            - Service request.
-     * 
-     * @param response
-     *            - Service response.
-     **/
-    public static void doWithoutResponse(String method, HttpServletRequest request,
-            HttpServletResponse response) throws IOException
-    {
-        JSONResponse jsonResponse = doWithResponse(method, request, response);
-        Write(response, jsonResponse);
-    }
-
-    private static void Write(HttpServletResponse response, JSONResponse json)
-            throws IOException
-    {
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json.toString());
     }
 
     private void InitializeMethodsMap()

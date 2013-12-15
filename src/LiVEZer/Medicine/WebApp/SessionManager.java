@@ -3,7 +3,7 @@ package LiVEZer.Medicine.WebApp;
 import java.util.Calendar;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
@@ -47,9 +47,9 @@ public class SessionManager
         logger.info("SessionManager.initializeSessions() - Initialized");
     }
 
-    private String generateSessionId(HttpServletRequest request, User user)
+    private String generateSessionId(/*HttpServletRequest request,*/ User user)
     {
-        String key = request.getSession().getId() + "/" + user.getLogin() + "/"
+        String key = /*request.getSession().getId() +*/ "/" + user.getLogin() + "/"
                 + Calendar.getInstance().getTime().toString();
         key = convertBytesToString(DigestUtils.md5(key));
         return key;
@@ -74,9 +74,9 @@ public class SessionManager
         return sRes;
     }
 
-    public WebUserSession CreateSession(HttpServletRequest request, User user)
+    public WebUserSession CreateSession(/*HttpServletRequest request,*/ User user)
     {
-        String sessionId = generateSessionId(request, user);
+        String sessionId = generateSessionId(/*request,*/ user);
         WebUserSession session = new WebUserSession();
         session.setSessionId(sessionId);
         session.setRoleId(user.getRole().getRoleId());

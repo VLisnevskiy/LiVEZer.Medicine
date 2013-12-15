@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import LiVEZer.Medicine.WebApp.Globals;
 import LiVEZer.Medicine.WebApp.Services.ServiceManager;
+import LiVEZer.Medicine.WebApp.Services.JSONResponse.JSONResponse;
 
 /**
  * BaseServlet
@@ -44,7 +45,18 @@ public class BaseServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        Object ob = request.getParameterMap();
+        System.out.println(ob);
         String method = request.getParameter(Globals.Method);
-        ServiceManager.doWithoutResponse(method, request, response);
+        String data = request.getParameter(Globals.Data);
+        Write(response, ServiceManager.Do(method, data));
+    }
+
+    private void Write(HttpServletResponse response, JSONResponse json)
+            throws IOException
+    {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json.toString());
     }
 }

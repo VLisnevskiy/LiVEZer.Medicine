@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 
+
 /**
  * Generic interface for realization main DAO function
  * 
@@ -84,6 +85,8 @@ public interface ICRUD<T, pK>
     public List<T> Read(Criterion criterion, Order order, int first, int max)
             throws SQLDataException;
 
+    public List<T> Read(Order order, int first, int max) throws SQLDataException;
+    
     /**
      * @param first
      */

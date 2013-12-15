@@ -10,16 +10,28 @@
 <link type="text/css" rel="stylesheet" href="css/ext/css/ext-all.css"/>
 <!-- Link JavaScript files-->
 <script type="text/javascript" src="js/LAB.min.js"></script>
+<script type="text/javascript" src="js/func/Constants.js"></script>
 
 <script type="text/javascript" src="js/ext/ext-all-debug.js"></script>
 <script type="text/javascript" src="js/apps/UsersApp.js"></script>
 <!--
 <script type="text/javascript" src="js/ext/ext-all.js"></script>
 <script type="text/javascript" src="js/apps/first_app.js"></script>-->
-<!-- 
+
 <script type="text/javascript">
 Ext.onReady(function(){
 
+    Ext.create('Ext.Button', {
+        text: 'User List',
+        renderTo: Ext.getBody(),
+        handler: function() {
+        
+            userAppMainWindow.show();
+                
+        }
+    });
+    
+    /*
     Ext.BLANK_IMAGE_URL = 'css/ext/s.gif';
     
     var Contact = Ext.data.Record.create([
@@ -156,10 +168,10 @@ Ext.onReady(function(){
     });
 
     //render to DIV
-    grid.render('crud-grid');
+    grid.render('crud-grid');*/
 });
 </script>
--->
+
 </head>
 <body>
     <!-- 

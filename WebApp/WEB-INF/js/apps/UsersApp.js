@@ -1,23 +1,28 @@
 ﻿Ext.Loader.setConfig({
-	enabled: true
+    enabled : true
 });
 
-Ext.application({
-	name: 'LiVEZer.Medicine',
-	appFolder: 'js/apps/UsersApp',
+var userAppMainWindow;
 
-	controllers: [
-		'Users'
-	],
+var userApp = Ext.application({
+    name : 'LiVEZer.Medicine',
+    appFolder : 'js/apps',
 
-	launch: function () {
-		Ext.create('Ext.container.Viewport', {
-			layout: 'border',
-			items: {
-				xtype: 'userlist',
-				region: 'center',
-				margins: '5 5 5 5'
-			}
-		});
-	}
+    controllers : [ 'Users' ],
+
+    launch : function() {
+        userAppMainWindow = Ext.create('Ext.window.Window', {
+            title : 'Список користувачів',
+            height : 400,
+            width : 600,
+            layout : 'fit',
+            closeAction : 'hide',
+            maximizable: true,
+            items : {
+                xtype : 'userlist',
+                border : false
+            }
+        });
+        userAppMainWindow.show();
+    }
 });

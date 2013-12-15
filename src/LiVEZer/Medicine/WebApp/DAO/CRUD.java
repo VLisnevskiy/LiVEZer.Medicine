@@ -20,8 +20,7 @@ import LiVEZer.Medicine.WebApp.DBManager;
  * @param <pK>
  *            - Type of primary key (type of id)
  */
-public class CRUD<T, pK extends Serializable>
-        implements ICRUD<T, pK>
+public class CRUD<T, pK extends Serializable> implements ICRUD<T, pK>
 {
     private Class<T> type;
     private Session session;
@@ -103,7 +102,7 @@ public class CRUD<T, pK extends Serializable>
 
     public List<T> Read(Criterion criterion) throws SQLDataException
     {
-        return Read(criterion, null, this.first, this.max);
+        return Read(criterion, (Order) null, this.first, this.max);
     }
 
     public List<T> Read(Criterion criterion, Order order) throws SQLDataException
@@ -111,9 +110,13 @@ public class CRUD<T, pK extends Serializable>
         return Read(criterion, order, this.first, this.max);
     }
 
+    public List<T> Read(Order order, int first, int max) throws SQLDataException
+    {
+        return Read((Criterion)null, order, this.first, this.max);
+    }
+
     @SuppressWarnings("unchecked")
-    public List<T> Read(Criterion criterion, Order order, int first, int max)
-            throws SQLDataException
+    public List<T> Read(Criterion criterion, Order order, int first, int max) throws SQLDataException
     {
         List<T> rows = new ArrayList<T>();
         try
@@ -123,14 +126,14 @@ public class CRUD<T, pK extends Serializable>
             if (criterion != null)
             {
                 criteria.add(criterion);
-                if (order != null)
+            }
+            if (order != null)
+            {
+                criteria.addOrder(order);
+                if (max != 0)
                 {
-                    criteria.addOrder(order);
-                    if (max != 0)
-                    {
-                        criteria.setFirstResult(first);
-                        criteria.setMaxResults(max);
-                    }
+                    criteria.setFirstResult(first);
+                    criteria.setMaxResults(max);
                 }
             }
 
@@ -178,7 +181,7 @@ public class CRUD<T, pK extends Serializable>
 
         this.session = DBManager.getSessionFactory().openSession();
     }
-    
+
     public void Close()
     {
         if (this.session.isOpen())
@@ -186,7 +189,7 @@ public class CRUD<T, pK extends Serializable>
             DBManager.CloseSession(this.session);
         }
     }
-    
+
     public boolean isOpen()
     {
         return this.session.isOpen();

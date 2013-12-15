@@ -1,15 +1,22 @@
 package LiVEZer.Medicine.WebApp.DataProviders;
 
-import java.util.HashMap;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
+import javax.persistence.criteria.Root;
 
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import LiVEZer.Medicine.WebApp.DBManager;
-import LiVEZer.Medicine.WebApp.Globals.Models;
 import LiVEZer.Medicine.WebApp.SessionManager;
 import LiVEZer.Medicine.WebApp.DAO.CRUD;
 import LiVEZer.Medicine.WebApp.DAO.ICRUD;
@@ -40,20 +47,19 @@ public class UserProvider extends BaseDataProvider
         userDAO.Close();
     }
 
-    public WebUserSession LogIn(HttpServletRequest request, HttpServletResponse response)
-            throws Exception
+    public WebUserSession LogIn(String data) throws Exception
     {
         if (!userDAO.isOpen())
             userDAO.Refresh();
 
         WebUserSession userSession = null;
-        LogInModel model = getLogInModel(request);
         try
         {
+            LogInModel model = getLogInModel(data);
             List<User> users = userDAO.Read(model.getSearchCriteria());
             if (users.size() > 0)
             {
-                userSession = SessionManager.GetInstance().CreateSession(request, users.get(0));
+                userSession = SessionManager.GetInstance().CreateSession(users.get(0));
             }
         }
         catch (Exception e)
@@ -70,12 +76,41 @@ public class UserProvider extends BaseDataProvider
         return userSession;
     }
 
-    private LogInModel getLogInModel(HttpServletRequest request)
+    public List<User> ReadAllUsers(String criteria, String orderBy, boolean ascending, int first, int size)
+            throws Exception
     {
-        LogInModel model = new LogInModel();
-        HashMap<String, String> params = prepareLogInParam(request.getParameterMap());
-        model.setLogin(params.get(Models.LogInModel.Login));
-        model.setPassw(params.get(Models.LogInModel.Password));
+        if (!userDAO.isOpen())
+            userDAO.Refresh();
+        
+        List<User> users = new ArrayList<User>();
+        try
+        {
+            /*EntityManagerFactory r = Persistence.createEntityManagerFactory("Some");
+            CriteriaBuilder builder = r.createEntityManager().getCriteriaBuilder();
+            CriteriaQuery<User> cr = builder.createQuery(User.class);
+            Root<User> entityRoot = cr.from(User.class);
+            cr.select(entityRoot);
+            Order order = ascending ? builder.asc(entityRoot.get(orderBy))
+                : builder.desc(entityRoot.get(orderBy));*/
+            
+            org.hibernate.criterion.Order order = ascending ? org.hibernate.criterion.Order.asc(orderBy)
+                    : org.hibernate.criterion.Order.desc(orderBy);                    
+            
+            users = userDAO.Read(order, first, size);
+        }
+        catch (Exception e)
+        {
+            logger.error("Can't read users", e);
+            throw new Exception("Can't read users", e);
+        }
+
+        return users;
+    }
+
+    private LogInModel getLogInModel(String data) throws JsonMappingException, IOException
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        LogInModel model = mapper.readValue(data, LogInModel.class);
         return model;
     }
 

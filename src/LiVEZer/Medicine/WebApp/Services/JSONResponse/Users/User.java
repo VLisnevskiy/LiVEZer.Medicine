@@ -7,7 +7,9 @@ public class User
 {
     private int id;
     private String name;
+    private String role;
     private String email;
+    private boolean active;
 
     public int getId()
     {
@@ -29,6 +31,16 @@ public class User
         this.name = name;
     }
 
+    public String getRole()
+    {
+        return role;
+    }
+
+    public void setRole(String role)
+    {
+        this.role = role;
+    }
+
     public String getEmail()
     {
         return email;
@@ -37,6 +49,16 @@ public class User
     public void setEmail(String email)
     {
         this.email = email;
+    }
+
+    public boolean isActive()
+    {
+        return active;
+    }
+
+    public void setActive(boolean active)
+    {
+        this.active = active;
     }
 
 }
