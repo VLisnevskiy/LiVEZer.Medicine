@@ -3,7 +3,7 @@ package LiVEZer.Medicine.WebApp.DataProviders;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+/*
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -11,7 +11,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Root;
-
+*/
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -76,8 +76,7 @@ public class UserProvider extends BaseDataProvider
         return userSession;
     }
 
-    public List<User> ReadAllUsers(String criteria, String orderBy, boolean ascending, int first, int size)
-            throws Exception
+    public List<User> ReadAllUsers() throws Exception
     {
         if (!userDAO.isOpen())
             userDAO.Refresh();
@@ -91,12 +90,12 @@ public class UserProvider extends BaseDataProvider
             Root<User> entityRoot = cr.from(User.class);
             cr.select(entityRoot);
             Order order = ascending ? builder.asc(entityRoot.get(orderBy))
-                : builder.desc(entityRoot.get(orderBy));*/
+                : builder.desc(entityRoot.get(orderBy));
             
             org.hibernate.criterion.Order order = ascending ? org.hibernate.criterion.Order.asc(orderBy)
-                    : org.hibernate.criterion.Order.desc(orderBy);                    
+                    : org.hibernate.criterion.Order.desc(orderBy);*/                    
             
-            users = userDAO.Read(order, first, size);
+            users = userDAO.Read();
         }
         catch (Exception e)
         {
@@ -105,6 +104,58 @@ public class UserProvider extends BaseDataProvider
         }
 
         return users;
+    }
+
+    public boolean CreateUser(User user)
+    {
+        boolean bRes = true;
+        if (!userDAO.isOpen())
+            userDAO.Refresh();
+        try
+        {
+            bRes = userDAO.Save(user);
+        }
+        catch(Exception e)
+        {
+            bRes = false;
+        }
+        
+        return bRes;
+    }
+    
+    public boolean UpdateUser(User user)
+    {
+        boolean bRes = true;
+        if (!userDAO.isOpen())
+            userDAO.Refresh();
+        try
+        {
+            bRes = userDAO.Save(user);
+        }
+        catch(Exception e)
+        {
+            bRes = false;
+        }
+        
+        return bRes;
+    }
+    
+    public boolean DeleteUser(long id)
+    {
+        boolean bRes = true;
+        if (!userDAO.isOpen())
+            userDAO.Refresh();
+        try
+        {
+            User user = userDAO.Read(id);
+            bRes = userDAO.Delete(user);
+        }
+        catch(Exception e)
+        {
+            bRes = false;
+        }
+        
+        return bRes;
     }
 
     private LogInModel getLogInModel(String data) throws JsonMappingException, IOException

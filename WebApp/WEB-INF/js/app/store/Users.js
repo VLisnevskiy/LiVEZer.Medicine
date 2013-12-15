@@ -9,10 +9,10 @@
 		limitParam: 'size',
 		startParam: 'page',
 		api: {
-			create: 'http://localhost:8080/LiVEZer.Medicine/admin/ajax.user.add',
-			read: 'http://localhost:8080/LiVEZer.Medicine/admin/ajax.user.read',
-			update: 'http://localhost:8080/LiVEZer.Medicine/admin/ajax.user.update',
-			destroy: 'http://localhost:8080/LiVEZer.Medicine/admin/ajax.user.delete'
+			create: 'admin/ajax.user.add',
+			read: 'admin/ajax.user.read',
+			update: 'admin/ajax.user.update',
+			destroy: 'admin/ajax.user.delete'
 		},
 		reader: {
 			type: 'json',

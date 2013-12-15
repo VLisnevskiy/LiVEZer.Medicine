@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import LiVEZer.Medicine.WebApp.DAO.CRUD;
-import LiVEZer.Medicine.WebApp.DAO.ICRUD;
+import LiVEZer.Medicine.WebApp.DataProviders.UserProvider;
 //import LiVEZer.Medicine.WebApp.DAO.Models.User;
 import LiVEZer.Medicine.WebApp.Services.JSONResponse.*;
 import LiVEZer.Medicine.WebApp.Services.JSONResponse.Error;
@@ -24,18 +23,9 @@ public class AdminAjaxController
 {
     private static final Logger logger = Logger.getLogger(AdminAjaxController.class);
 
-    private static List<User> users = new ArrayList<User>();
-    private static int id;
 
     public AdminAjaxController()
     {
-        users = new ArrayList<User>();
-        /*
-         * User user = new User(); user.setId(++id);
-         * user.setName("Лісневський Вячслав"); user.setRole("Адміністратор");
-         * user.setEmail("admin@main.ua"); users.add(user);
-         */
-
     }
 
     @RequestMapping(value = "/ajax.index")
@@ -57,7 +47,7 @@ public class AdminAjaxController
     {
         logger.info("Invoking \"~/user/ajax.user.add\"");
         JSONResponse response = new JSONResponse();
-        try
+        /*try
         {
             if (user != null)
             {
@@ -74,7 +64,7 @@ public class AdminAjaxController
             response = new Error();
             ((Error) response).setCode(4);
             ((Error) response).setMessage("Can't create new User");
-        }
+        }*/
 
         return response;
     }
@@ -86,16 +76,10 @@ public class AdminAjaxController
         logger.info("Invoking \"~/user/ajax.user.read\" (page = " + page + " size = " + size + ")");
 
         List<User> usr = new ArrayList<User>();
-        /*
-         * for (int i = page; i < page + size && i < users.size(); i++) {
-         * usr.add(users.get(i)); }
-         */
-        ICRUD<LiVEZer.Medicine.WebApp.DAO.Models.User, Long> userDAO = new CRUD<LiVEZer.Medicine.WebApp.DAO.Models.User, Long>(
-                LiVEZer.Medicine.WebApp.DAO.Models.User.class);
-
+        List<LiVEZer.Medicine.WebApp.DAO.Models.User> users = null; 
         try
         {
-            List<LiVEZer.Medicine.WebApp.DAO.Models.User> users = userDAO.Read();
+            users = (new UserProvider()).ReadAllUsers();
             for (int i = page; i < page + size && i < users.size(); i++)
             {
                 User user = new User();
@@ -115,7 +99,7 @@ public class AdminAjaxController
 
         Collection response = new Collection();
         response.setData(usr);
-        response.setTotal(users.size());
+        response.setTotal(users != null ? users.size() : 0);
         response.setSuccess(true);
 
         logger.info(response);
