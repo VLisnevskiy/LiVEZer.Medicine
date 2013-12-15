@@ -125,14 +125,10 @@ public class AdminAjaxController
     {
         logger.info("Invoking \"~/user/ajax.user.delete\"");
 
-        Collection coll = new Collection();
-        coll.setData(user);
-        logger.info(coll);
-
-        Error response = new Error();
-        response.setSuccess(false);
-        response.setCode(1);
-        response.setMessage("ajax.user.delete");
+        Collection response = new Collection();
+        response.setData("");
+        response.setTotal(0);
+        response.setSuccess((new UserProvider()).DeleteUser(user.getId()));
         return response;
     }
 }
